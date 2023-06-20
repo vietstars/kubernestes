@@ -1,0 +1,87 @@
+Đơn vị phi vật thể nhỏ nhất của công nghệ thông tin là bit (binary digit)
+Đơn vị vật thể nhỏ nhất là PC (Power computer)
+
+Từ những PC (CPU, RAM, Storage) đơn lẽ thông qua ideal của Billgate đã kêt nối các PC với nhau để tạo ra internet như hiện nay!
+
+vậy server là gì ?
+
+Server cũng là PC nhưng được xây dựng để tập trung process cụ thể nào đó có thể là 1 PC hoặc là 1 cụm PC
+
+Ví dụ: 
+  - Graphic render server, mục địch là hệ thống máy PC đủ mạnh về đồ hoặc đủ nhiều về dung lượng để thực hiện render filmn hoặc render ảnh cho mục địch đồ họa
+  - Web server, data sever, cluster server là hệ thống máy PC chuyện xử lý connection transfer data cho web application...
+
+  Để lấy thông tin hoặc làm gián đoạn sự hoạt động của server hoặc điều khiển server khác với luồng làm việc ban đầu của mục đích là hacking và người làm ra việc này là hacker 
+
+  Vậy làm sao hacker có thể làm được việc này?
+  trên thực tế hacker là những người ít nhất là giỏi và hiểu về những gì họ làm 
+  VD: Các hacker DDos rất giỏi về transaction trên internet họ có thể detect máy chủ họ tấn công là loại hình gì lượng transaction tối đa là bao nhiều để suppend server
+
+  Hoặc hacker Info chiếm tài khoản người dùng cuối có 3 dạng:
+  1. Attacks thẳng vào binnay data truyền qua internet thông qua cáp mạng của nhà mạng (trùm về công nghệ giỏi về mã hóa và giải mã dữ liệu)
+  2. Attacks thăng vào server thông qua lỗ hỗng phần mềm ứng dụng bên thứ 3 để lấy thông tin trức tiếp từ server như trước đây có lỗ hỗng SQL injection của MSSQL, hoặc hack data từ cache trên các trình duyệt hoặc hack từ các lỗ hỏng của webserver như appache hoặc IIS... (giỏi về ứng dụng và hiểu về ứng dụng bao gồm cả lập trình)
+  3. Attacks mạo danh server thông qua email hoặc jojan hoặc trình duyệt lừa người dùng tự nhập dữ liệu cá nhân của mình (giỏi về sử dụng và biết về lập trình)
+
+  Làm sao để hacker tấn công server
+  Hacker như là 1 kẻ trộm vậy cách tấn công như thế nào
+  Nếu nhà bạn là khối lập phương 6 mặt đương nhiên không thể 6 mặt đều bịch kín thì ăn trộm sẽ không tấn công được tương tự như việc 1 server không thực hiện giao tiếp internet thì server đó sẽ có hacker từ bên trong chính là những người quản lí cài đặt hoặc được quyền tiếp xúc với server đó và không có hacker từ bên ngoài hay cách khác là không có hacker từ internet
+
+  Nếu nhà bạn tạo cửa chính để ra vào thì có trộm tất nhiên là trộm từ cửa chính giống như nếu bạn là 1 webserver chỉ mở port NAT là port 80 hoặc port 3000 cho node... đương nhiên port nay mặt định bảo mật thì Hackẻ sẽ tấn công bằng DDos thông qua port 80 hoặc port 3000 bằng cách tạo số lượng kết nói đồng loạt liên tục lên các port này khiến bandwidth (bit/) vượt qua giới khiến server phải đóng lại các port này để bảo vệ máy chủ
+  VD: 1 connection (1 pc connect to server) có option head gửi đi tối thiểu mất 300ms cho 3 wsay handset và tối thiểu là 768bits cho header. Thông qua bandwitdh do nhà mạng cung cấp VD: 1GBs/s hoặc 30GBs/s... chúng ta có thể tính ra được lượng truy cập (connections) tối đa vào server nhưng nó không thể hiện là sự kết nối của server. Giống như con đường đi đến nhà bạn có thể 50 người đi trên đó theo hàng ngang cùng 1 lúc nhưng nhà bạn không nhất thiết là chưa hết 50 người cũng 1 lúc.
+  - có 2 vấn đề phát sinh:
+  1. nhà bạn chứa hơn 50 người nhưng cùng 1 lúc nhà bạn chỉ nhận 50 đến cùng 1 lúc (Giống như server thừa tài nguyên CPU, RAM, HDD)
+
+  2. Nhà bạn chỉ chưa 20 người dẫn đến nếu quản lý tốt (schedule, broken msg, caching...) thì số người vượt quá 20 người đứng ngoài chờ, nhưng tình trạng sẽ không kéo dài vì sự chờ càng ngày càng gia tăng dẫn đến bế tắt (Giống như server thiếu hụt CPU, RAM, storage bù đặp thêm bằng Rabbit-MQ, Kafka, redis... khi quá tải server sẽ từ suppend để bảo về)
+
+  3. Socket.io keep connection là dạng có 1 người vào nhà bạn và ở ì không chịu về rồi cứ thế tăng lên 2, 3, ..20 người mà sức chứa nhà bạn chỉ có 20 người trường hợp này cũng dẫn đến server bị suppend
+
+  3 Hình thức này là mô tả dạng tấn công DDos như trên.
+
+  Nếu bạn để lộ IP và port của server là 80 hoặc 3000... thì hacker tấn server port 80, port 3000 nhưng nếu bạn mở thêm port 3306 và lộ IP MySQL server thì hacker có thể tấn công theo 2 đường vào server của bạn. Hoặc bạn bị hack thông tin sftp 22 hay ssh key pair của storage data nổi kinh hoàng của hệ thống.
+
+  Tóm lại nếu: "Server mở gì thì hacker tấn công đó."
+
+  Vậy làm sao để hạn chế hacker tấn công đến tối đa: tất nhiên là giảm thiểu giao tiếp qua internet tối đa sẽ giúp giảm khả năng tấn công bên cạnh đó tăng cường hệ thống loadbalancing để thực hiện cân bằng tải cho hệ thống nào giao tiếp với internet.
+
+  Các hệ thống đã từng tiếp xúc làm việc:
+  1 - Monolithic physical server (IIS vs apache): web, storage, database, game server
+  2 - Monolithic cpanel, hosting share... server web gồm apache php node mysql storage all in 1
+  3 - Distributed MicroService (Node vs Java) aws Eureka netflix, google platform... web server | storage | database | elasticsearch
+  4 - Decentrialize peer to peer Blockchain (golang vs solidity vs Js) warehouse data| data lake | synchronize peer to peer | hasing function
+
+  Thông qua các kinh nghiệm thấy rằng: 
+  - Hệ thống có độ trễ giữa các server và micro server qua internet với 3, 4
+  - Hệ thống quá tải khi traffic tăng cao và thượng bị suppend server vì quá tải với 1, 2
+
+  để 1 hệ thống thực sự mạnh chỉ có thể là 1 hệ thống phát triển trên 1 cụm server (LAN) và chỉ NAT port 1 điểm ra internet nhất định (loadbalancing gateway) các máy chủ trọng mạng LAN sẽ hoàn toàn bảo mật vì không có giao tiếp với internet qua in-bound
+
+  Vấn đề phát sinh:
+  - Hệ thống loadbalancing chỉ cân bằng tải chỉ là chuyển transition đến máy service nhưng nếu lượng trafic quá lớn cần phải scaling server thì việc triển khai server là 1 vấn đề rât lớn về thời gian, tài chính và cả kỹ thuật phải đồng bộ với các máy chủ khác về mặt kỹ thuật và công nghệ
+  - Hệ thống các máy chủ trong LAN cũng như hệ thống máy chủ Loadbalancing cũng cần scale khi nhu cầu lên cũng như giảm nhu cầu.
+  - Việc tăng nhu cầu về hệ thống máy chủ thường thấy trên các hệ thống nhưng việc giảm nhu cầu máy chủ trên các hệ thống diễn ra cũng rất phức tạp như nhau và Cơ sở nào để có thể tối ưu hóa hệ thống như vậy?
+  - Bên cạnh đó cần phải giảm thiểu rủi ro hệ thống như mất điện, mất mạng, cháy nổ thiên tai...
+  - Mất data là một trong những vấn đề nghiêm trọng của hệ thống làm sao để có thể bảo toàn data trước nhưng vấn đề phát sinh trên. 
+
+  Trên đây là những lưu ý cho nhưng ai muốn làm việc với công nghệ.
+
+  Để gánh những vấn đề trên giải pháp hàng đầu là làm việc với các cloud network như Google PlatForm, Amazone Webservice, Digital Ocean, Microsoft Azure... cái kết là cần phải có cloud engineer (at least annual $123,000) (mới đủ level để có thể giải quyết những issue trên) đồng thời cần phải trả tiền thuê NETWORK với giá rất cao at least $300/medium server/1 month. 
+
+  Nếu 1 công ty hoạt động thì tiền nhân viên là 1 áp lực, chi phí phát sinh là 1 áp lực nếu tốn thêm chi phí trên thì áp lực là khá lớn bên cạnh đó nó không còn là tài sản của cty vì nó là cloud mây sẽ tang biến nếu chuyển áp lực này cho khách hàng vô tình tạo sự kết nối không bền vững vì khách hàng sẽ tìm đến nhưng dịch vụ giá rẽ và chuyên nghiệp hơn (bản thân có chắc chắn về chuyên môn cloud hay ko ?)
+
+  Nếu thực hiện giải quyết hiệu quả và khắc phục các vấn đề trên cty giảm thiểu được rất nhiều áp lực tài, server cty đã đầu tư chính là tài sản của cty sau này, bên cạnh đó cty sẽ cho khách hàng thuê là với giá thấp của dịch vụ mang lại hiệu quả hơn cho doanh thu cty tạo sự kết nối bền vững với khách hàng. Đơn giản nhất để thấy dữ liệu của cty và dữ liệu của khác hàng nằm trong hệ thống server LAN là 1 điều bảo mật 100% so với dữ liệu lưu trên cloud
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
